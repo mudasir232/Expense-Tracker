@@ -1,0 +1,79 @@
+﻿@model Expense_Tracker.Models.Transaction
+
+@{
+    ViewData["PageTitle"] = Model.TransactionId == 0 ? "Create a new transaction" : "Edit transaction";
+}
+<hr />
+<div class="row">
+    <div class="col-md-7">
+        <div class="widget p-5" style="background-color:#212b36">
+            <form asp-action="AddOrEdit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" name="TransactionId" value="@Model.TransactionId" />
+
+                <!-- Syncfusion Date Picker -->
+                <div class="mb-3">
+                    <ejs-datepicker id="date" ejs-for="Date" placeholder="Date" floatLabelType="Always"
+                        format="MM/dd/yyyy">
+                    </ejs-datepicker>
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+
+                <!-- Syncfusion DropDownList -->
+                <div class="mb-3">
+                    <ejs-dropdownlist id="ddlcategory" ejs-for="CategoryId" dataSource="@ViewBag.Categories"
+                        placeholder="Select a category" floatLabelType="Always" allowFiltering="true"
+                        itemTemplate="#itemTemplate">
+                        <e-dropdownlist-fields value="CategoryId" text="TitleWithIcon"></e-dropdownlist-fields>
+                    </ejs-dropdownlist>
+                    <style>
+                        .dropdown-item {
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        .dropdown-icon {
+                            margin-right: 8px;
+                            font-size: 1.2em;
+                            /* Adjust icon size */
+                        }
+                    </style>
+
+                </div>
+
+                <!-- Amount Field: Syncfusion Numeric TextBox -->
+                <div class="mb-3">
+                    <ejs-numerictextbox id="amount" ejs-for="Amount" placeholder="Amount" floatLabelType="Always"
+                                         value="@Model.Amount" format="C2" min="0" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+
+                <!-- Note Field -->
+                <div class="mb-3">
+                    <ejs-textbox id="note" placeholder="Note" ejs-for="Note" 
+                    floatLabelType="Always" multiline="true"></ejs-textbox>
+                    <span asp-validation-for="Note" class="text-danger"></span>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="mb-3">
+                    <ejs-button id="submit" type="submit" content="submit" cssClass="e-success"></ejs-button> 
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="widget h-100 d-flex justify-content-center align-items-center">
+            <i class="fa-brands fa-pagelines fa-2xl"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Item Template for DropDownList -->
+<script id="itemTemplate" type="text/x-template">
+    <div class="dropdown-item">
+        <span class="dropdown-icon">${Icon}</span>
+        <span class="dropdown-text">${Title}</span>
+    </div>
+</script>

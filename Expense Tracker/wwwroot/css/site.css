@@ -1,0 +1,302 @@
+/* Base Styling */
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #12161d;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+/* Buttons and Custom Radio Button Group */
+.e-bigger {
+    font-size: x-large;
+}
+
+.e-btn-group.custom-rbt-group {
+    width: 100%;
+    display: flex;
+    gap: 10px; /* Adds spacing between buttons */
+}
+
+    .e-btn-group.custom-rbt-group .e-btn {
+        display: block;
+        width: 100%; /* Ensures buttons span full width of their container */
+        padding: 10px; /* Adds padding to make buttons larger and text more readable */
+        text-align: center;
+        border: 1px solid #fff;
+        background-color: rgb(34, 43, 51);
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .e-btn-group.custom-rbt-group input[type="radio"] {
+        display: none; /* Hide the default radio input */
+    }
+
+    .e-btn-group.custom-rbt-group input:checked + label.e-btn {
+        background-color: #fff;
+        color: #1236b3;
+        border: 1px solid #1236b3;
+    }
+
+    .e-btn-group.custom-rbt-group .e-btn:hover {
+        background-color: #fff;
+        color: #1236b3;
+    }
+/* Grid Styling (Scoped to .custom-grid to avoid affecting other elements) */
+.custom-grid {
+    background-color: #1a222b;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  .custom-grid .e-grid-header {
+    background-color: #212b36;
+    color: #fff;
+    font-weight: bold;
+    text-align: left;
+    font-size: 1.1rem;
+    padding: 1rem;
+    border-bottom: none; /* Removed separator lines */
+  }
+  
+  .custom-grid .e-grid-row {
+    background-color: #1e2730;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .custom-grid .e-grid-row:hover {
+    background-color: #333; /* Dark gray color on hover */
+    transform: scale(1.01);
+    cursor: pointer;
+  }
+  
+  .custom-grid .e-grid-cell {
+    padding: 1rem;
+    text-align: left;
+    font-size: 0.95rem;
+    color: #cfd3d8;
+    border-bottom: 1px solid #333; /* Added a dark gray border */
+  }
+  
+  .custom-grid .e-grid-cell:hover {
+    color: #fff;
+  }
+  
+  /* Removed Alternate Row Colors */
+  /* .custom-grid .e-grid-row:nth-child(odd) {
+    background-color: #1b242c;
+  } */
+  
+  /* Removed Actions Column styling */
+  /* .custom-grid .e-grid-cell:last-child {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #3498db;
+  } */
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .custom-grid .e-grid-cell {
+        font-size: 0.85rem;
+        padding: 0.75rem;
+    }
+
+    .custom-grid .e-grid-header {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+}
+
+/* Widget Styling */
+.widget {
+    border-radius: 1rem;
+    background-color: #1a222b;
+    padding: 1.5rem;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .widget:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .widget i {
+        color: #fff;
+        transition: color 0.3s ease;
+    }
+
+    .widget:hover i {
+        color: #3498db; /* Accent color on hover */
+    }
+
+@media (max-width: 768px) {
+    .widget {
+        padding: 1rem;
+    }
+
+    .e-grid-cell {
+        font-size: 0.8rem;
+    }
+}
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.validation-message {
+    margin-top: 5px; /* Adjust margin as needed */
+    text-align: left;
+}
+
+
+    /* Ensure headers are centered */
+    .custom-grid .e-headercell {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    /* Center-align text in grid cells */
+    .custom-grid .e-rowcell {
+        text-align: center; /* Horizontal alignment */
+        vertical-align: middle; /* Vertical alignment */
+    }
+
+    /* Optional: Fine-tune the alignment of specific templates */
+    .custom-grid .category-column-template,
+    .custom-grid .amount-column-template,
+    .custom-grid .action-column-template {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Center-align the column headers */
+    .custom-grid .e-headercell {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    /* Ensure row cells align with the center of their headers */
+    .custom-grid .e-rowcell {
+        text-align: center; /* Horizontal alignment */
+        vertical-align: middle; /* Vertical alignment */
+    }
+
+    /* Optional: Adjust grid cell padding for better alignment */
+    .custom-grid .e-headercell,
+    .custom-grid .e-rowcell {
+        padding: 10px; /* Adjust this value as needed */
+    }
+
+    /* Ensure no extra left offset for row data */
+    .custom-grid .e-rowcell > div {
+        margin: auto;
+    }
+
+
+
+
+
+    .main-content {
+        margin-left:250px ;
+
+    }
+
+
+     /*Sidebar*/
+     #sidebar {
+        background-color: #12161d;
+        border-right: 1px dashed rgba(75, 82, 85,0.24);
+        padding: 10px 20px;
+     }
+
+     .widget.summary > div:first-child {
+        background-color: #222b33;
+        padding: 1rem;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+    }
+    
+    .widget.summary.income > div:first-child {
+        color: #65da41;
+    }
+    
+    .widget.summary.expense > div:first-child {
+        color: #ff4e48;
+    }
+    
+    .widget.summary.balance > div:first-child {
+        color: #2aa1ff;
+    }
+    
+
+     .widget.chart {
+        padding: 5px;
+     }
+
+  /* Customize grid style */
+  #recent-transactions .e-grid {
+    border-radius: 10px; /* Curve the corners */
+    overflow: hidden; /* Ensure rounded corners apply */
+    background-color: #3a4750; /* Dark grey-blue (salty sea-like) */
+    color: #f1f1f1; /* Light text for contrast */
+}
+
+.e-headercell:hover {
+    color: #ffffff; /* White color on hover */
+    background-color: #4b7e848c; /* Subtle blue-gray shade */
+    transition: all 0.3s ease-in-out; /* Smooth animation */
+}
+  /* Header cell styling */
+  .e-grid .e-headercell {
+    background-color: #172d4c; /* Darker header background */
+    color: #f5f6fa; /* Slightly off-white text */
+    font-weight: bold; /* Make headers prominent */
+}
+
+  /* Remove white space and overflow at the bottom of the grid */
+  #recent-transactions .e-grid {
+      border-radius: 10px; /* Keep rounded corners */
+      overflow: hidden; /* Hide any extra content */
+      background-color: #133a55; /* Dark grey-blue background */
+      color: #f1f1f1; /* Light text for contrast */
+  }
+
+  /* Prevent scrollbars from appearing unnecessarily */
+  #recent-transactions .e-grid .e-content {
+      overflow: auto !important; /* Ensure content is scrollable only if needed */
+  }
+
+  /* Remove margins or padding causing extra space */
+  #recent-transactions {
+      margin: 0; /* Ensure no margins are applied to the grid container */
+      padding: 0; /* Remove padding */
+  }
+
+
+  .e-headercell:hover {
+    color: #ffffff; /* White color on hover */
+    background-color: #29625c73; /* Subtle blue-gray shade */
+    transition: all 0.3s ease-in-out; /* Smooth animation */
+}

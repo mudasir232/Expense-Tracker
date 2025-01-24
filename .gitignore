@@ -1,0 +1,27 @@
+# .NET build outputs
+bin/
+obj/
+
+# NuGet packages
+.nuget/
+*.nupkg
+
+# Local development files
+.vscode/
+.vs/
+.idea/
+
+# User-specific files
+*.user
+*.suo
+
+# Debug files
+*.pdb
+*.ilk
+
+# Logs and diagnostics
+logs/
+*.log
+
+# Node.js dependencies
+node_modules/

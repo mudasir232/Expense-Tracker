@@ -1,0 +1,173 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+  ViewData["isDashboard"] = "true";
+
+}
+
+
+
+@*Summary Widgets*@
+
+
+<div class="row mb-4">
+  <div class="col-md-4">
+    <div class="d-flex flex-row widget summary income">
+      <div class="d-flex flex-column justify-content-center p-5">
+        <i class="fa-solid fa-dollar-sign fa-2xl" style="color:  #65da41"></i>
+
+      </div>
+      <div class="d-flex flex-column m-auto p-3">
+        <span class="lead">Total Income</span>
+        <h1 class="display-6 fw-bold">@ViewBag.TotalIncome</h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="d-flex flex-row widget summary expense">
+      <div class="d-flex flex-column justify-content-center p-5">
+        <i class="fa-solid fa-dollar-sign fa-2xl" style="color: #ff4e48"></i>
+
+      </div>
+      <div class="d-flex flex-column m-auto p-3">
+        <span class="lead">Total Expense</span>
+        <h1 class="display-6 fw-bold">@ViewBag.TotalExpense</h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="d-flex flex-row widget summary balance">
+      <div class="d-flex flex-column justify-content-center p-5">
+        <i class="fa-solid fa-dollar-sign fa-2xl" style="color: #1f90f2"></i>
+
+      </div>
+      <div class="d-flex flex-column m-auto p-3">
+        <span class="lead">Balance</span>
+        <h1 class="display-6 fw-bold">@ViewBag.Balance</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@*Doughnut Chart and spline Chart*@
+
+<div class="row mb-4">
+  <!-- Doughnut Chart -->
+  <div class="col-md-4">
+    <div class="widget chart">
+      <div class="p-4">
+        <h5 class="fw-bold">Expense by Category</h5>
+      </div>
+      <ejs-accumulationchart id="doughnutchart" enableAnimation="true" enableSmartLabels="true" background="#1a222b">
+        <e-accumulation-series-collection>
+          <e-accumulation-series dataSource="@ViewBag.DoughnutChartData" xName="categoryTitleWithIcon" yName="amount"
+            innerRadius="60%" dataLabelSettings='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(new { 
+                visible = true, 
+                position = "Inside", 
+                template = "<div style=\'color: white; text-align: center; font-weight: bold; font-size: 12px;\'>${point.x}: $${point.y}</div>" 
+            }))' legendIcon="Circle">
+          </e-accumulation-series>
+        </e-accumulation-series-collection>
+
+        <e-accumulationchart-legendsettings position="Top">
+          <e-legendsettings-textstyle color="#fff" font="12px Arial"></e-legendsettings-textstyle>
+        </e-accumulationchart-legendsettings>
+
+        <e-accumulationchart-tooltipsettings enable="true" format="'${point.x}: $${point.y}'">
+        </e-accumulationchart-tooltipsettings>
+      </ejs-accumulationchart>
+    </div>
+  </div>
+
+  <!-- Spline Chart -->
+  <div class="col-md-8">
+    <div class="widget chart">
+      <div class="p-4">
+        <h5 class="fw-bold">Income vs Expense</h5>
+      </div>
+      <ejs-chart id="spline-chart">
+        <e-chart-primaryxaxis valueType="Category" labelIntersectAction="Rotate45"></e-chart-primaryxaxis>
+        <e-chart-primaryyaxis labelFormat="{value}"></e-chart-primaryyaxis>
+        <e-chart-chartarea>
+          <e-chartarea-border width="1" color="#cccccc"></e-chartarea-border>
+        </e-chart-chartarea>
+        <e-series-collection>
+          <e-series dataSource="@ViewBag.SplineChartData" xName="day" yName="income" name="Income"
+            type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline" width="3" marker-visibility="true" marker-width="8"
+            marker-height="8" marker-shape="Circle">
+          </e-series>
+          <e-series dataSource="@ViewBag.SplineChartData" xName="day" yName="expense" name="Expense"
+            type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline" width="3" marker-visibility="true" marker-width="8"
+            marker-height="8" marker-shape="Diamond">
+          </e-series>
+        </e-series-collection>
+
+        <e-chart-legendsettings visible="true"></e-chart-legendsettings>
+        <e-chart-tooltipsettings enable shared></e-chart-tooltipsettings>
+      </ejs-chart>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <!-- Recent Transactions Grid -->
+  <div class="col-md-7">
+    <div class="widget chart">
+      <div class="p-4">
+        <h5 class="fw-bold">Recent Transactions</h5>
+      </div>
+      <ejs-grid id="recent-transactions" 
+          dataSource="@ViewBag.RecentTransactions" 
+          gridLines="None"
+          width="100%" 
+          height="200px" 
+          
+          style="border-radius: 10px; 
+                 overflow: hidden; 
+                 background-color:#133a55; 
+                 color: #f1f1f1; 
+                 margin: 0; 
+                 padding: 0;">
+  <e-grid-columns>
+    <e-grid-column headerText="Category" 
+                   field="CategoryTitleWithIcon" 
+                   headerTextAlign="Center" 
+                   textAlign="Center"></e-grid-column>
+    <e-grid-column headerText="Date" 
+                   field="Date" 
+                   type="date" 
+                   textAlign="Center" 
+                   format="MMM-dd-yy"></e-grid-column>
+    <e-grid-column headerText="Amount" 
+                   field="FormattedAmount" 
+                   textAlign="Center" 
+                   width="150"></e-grid-column>
+  </e-grid-columns>
+</ejs-grid>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<style>
+
+
+.e-headercell:hover {
+      cursor: pointer;
+      transform: scale(1.05); /* Slight zoom effect */
+  }
+  </style>

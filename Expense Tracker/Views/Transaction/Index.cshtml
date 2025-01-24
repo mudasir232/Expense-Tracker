@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Expense_Tracker.Models.Transaction>
+
+@{
+    ViewData["PageTitle"] = "Transactions";
+}
+
+<div class="row">
+    <!-- "Create New Transaction" Button -->
+    <div class="col-12 mb-3 d-flex justify-content-start">
+        <a href="/Transaction/AddOrEdit" class="btn btn-success">
+            <i class="fa-solid fa-plus"></i> Create New Transaction
+        </a>
+    </div>
+
+    <!-- Grid and Widget -->
+    <div class="col-md-7">
+        <ejs-grid id="transactions" dataSource="@Model" gridLines="None" allowSorting="true" allowPaging="true"
+            class="custom-grid">
+            <e-grid-columns>
+                <e-grid-column headerText="Category" field="CategoryTitleWithIcon" template="#categoryColumnTemplate"
+                    width="200px" textAlign="Center"></e-grid-column>
+                <e-grid-column headerText="Amount" field="FormattedAmount" width="150px"
+                    textAlign="Center"></e-grid-column>
+                <e-grid-column headerText="Note" field="Note" width="150px" textAlign="Center"></e-grid-column>
+                <e-grid-column headerText="Date" field="Date" width="150px" format="yMd"
+                    textAlign="Center"></e-grid-column>
+                <e-grid-column headerText="Action" template="#actionColumnTemplate" width="150px"
+                    textAlign="Center"></e-grid-column>
+            </e-grid-columns>
+        </ejs-grid>
+
+    </div>
+    <div class="col-md-5">
+        <div class="widget h-100 d-flex justify-content-center align-items-center" style="background-color:#212b36">
+            <i class="fa-solid fa-wallet fa-2xl"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Category Column Template -->
+<script id="categoryColumnTemplate" type="text/x-template">
+    <div class="d-flex align-items-center">
+        <span class="me-2" style="font-size: 1.25rem;">${Category.Icon}</span>
+        <span>${Category.Title}</span>
+    </div>
+</script>
+
+<!-- Amount Column Template -->
+<script id="amountColumnTemplate" type="text/x-template">
+    <span class="${(Category?.Type === 'Expense') ? 'text-danger' : 'text-success'} fw-bold">
+        ${(Category?.Type === 'Expense' ? '-' : '+')}${Amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+    </span>
+</script>
+
+<!-- Action Column Template -->
+<script id="actionColumnTemplate" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start">
+        <a class="btn btn-sm btn-outline-light" href="/Transaction/AddOrEdit/${TransactionId}">
+            <i class="fa-solid fa-pen fa-lg"></i>
+        </a>
+        <form action="/Transaction/Delete/${TransactionId}" method="post">
+    @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm btn-link no-a-decoration"
+                    onclick="return confirm(&quot;Are you sure to delete this record?&quot;)">
+                <i class="fa-solid fa-trash-can fa-lg text-danger"></i>
+            </button>
+        </form>
+    </div>
+</script>
